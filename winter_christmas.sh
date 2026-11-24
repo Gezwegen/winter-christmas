@@ -68,6 +68,7 @@ done
 
 running=1
 need_resize=1
+too_small=0
 light_mode=0
 blizzard=0
 show_hud=1
@@ -103,12 +104,25 @@ is_obstacle() {
 init_scene() {
     need_resize=0
     read -r ROWS COLS < <(stty size < /dev/tty 2>/dev/null)
-    [[ -z "$COLS" ]] && COLS=$(tput cols < /dev/tty 2>/dev/tty)
-    [[ -z "$ROWS" ]] && ROWS=$(tput lines < /dev/tty 2>/dev/tty)
-    [[ -z "$COLS" ]] && COLS=120
-    (( COLS < 100 )) && COLS=100
-    [[ -z "$ROWS" ]] && ROWS=34
-    (( ROWS < 28 )) && ROWS=28
+    [[ -z "$COLS" ]] && COLS=$(tput cols < /dev/tty 2>/dev/null)
+    [[ -z "$ROWS" ]] && ROWS=$(tput lines < /dev/tty 2>/dev/null)
+    [[ -z "$COLS" ]] && COLS=80
+    [[ -z "$ROWS" ]] && ROWS=24
+
+    if (( COLS < 100 || ROWS < 28 )); then
+        too_small=1
+        printf "%s" "${E}[?25l${E}[2J"
+        local mr=$(( ROWS / 2 - 2 ))
+        (( mr < 1 )) && mr=1
+        local mc=$(( (COLS - 36) / 2 ))
+        (( mc < 2 )) && mc=2
+        printf "%s" "${E}[${mr};${mc}H${RED}[!] TERMINAL WINDOW TOO SMALL [!]${RST}"
+        printf "%s" "${E}[$(( mr + 1 ));${mc}H${YEL}Current: ${COLS}x${ROWS}  |  Minimum: 100x28${RST}"
+        printf "%s" "${E}[$(( mr + 2 ));${mc}H${CYN}Please enlarge or maximize window...${RST}"
+        printf "%s" "${E}[$(( mr + 4 ));${mc}H${DIM}${WHT}Press [Q] to quit${RST}"
+        return
+    fi
+    too_small=0
 
     GROUND_R=$(( ROWS - 3 ))
     BASE_R=$(( GROUND_R - 1 ))
@@ -223,7 +237,20 @@ trigger_firework() {
 }
 
 while (( running )); do
+    if (( too_small || tick % 8 == 0 )); then
+        read -r cur_r cur_c < <(stty size < /dev/tty 2>/dev/null)
+        if [[ -n "$cur_c" && -n "$cur_r" ]] && (( cur_c != COLS || cur_r != ROWS )); then
+            need_resize=1
+        fi
+    fi
     (( need_resize )) && init_scene
+
+    if (( too_small )); then
+        key=""
+        if [[ -r /dev/tty ]]; then read -rsn1 -t 0.15 key < /dev/tty 2>/dev/null; else sleep 0.15; fi
+        [[ "$key" == "q" || "$key" == "Q" ]] && running=0
+        continue
+    fi
 
     frame=""
     (( tick++ ))
@@ -540,4 +567,4 @@ while (( running )); do
     esac
 done
 
-printf "%s\n" "${E}[?25h${E}[${ROWS};1H${RST}"
+printf "%s" "${E}[?25h${E}[2J${E}[1;1H${RST}"
