@@ -102,11 +102,11 @@ is_obstacle() {
 
 init_scene() {
     need_resize=0
-    COLS=$(tput cols < /dev/tty 2>/dev/null)
+    read -r ROWS COLS < <(stty size < /dev/tty 2>/dev/null)
+    [[ -z "$COLS" ]] && COLS=$(tput cols < /dev/tty 2>/dev/tty)
+    [[ -z "$ROWS" ]] && ROWS=$(tput lines < /dev/tty 2>/dev/tty)
     [[ -z "$COLS" ]] && COLS=120
     (( COLS < 100 )) && COLS=100
-
-    ROWS=$(tput lines < /dev/tty 2>/dev/null)
     [[ -z "$ROWS" ]] && ROWS=34
     (( ROWS < 28 )) && ROWS=28
 
