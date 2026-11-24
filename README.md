@@ -2,7 +2,7 @@
 
 ![Bash](https://img.shields.io/badge/Language-Pure_Bash-4EAA25?logo=gnu-bash&logoColor=white)
 ![Platform](https://img.shields.io/badge/Platform-Linux_%7C_macOS_%7C_WSL-blue)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+![License](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-red)
 
 A full-screen, zero-dependency **animated ASCII Christmas tree and winter landscape** written in pure Bash. Turn any Linux, macOS, or Windows WSL terminal into an interactive holiday screensaver with falling snow, Santa's sleigh, Northern Lights, and fireworks—runnable in one command via `curl`.
 
