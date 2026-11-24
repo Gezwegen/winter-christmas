@@ -19,19 +19,19 @@ A full-screen, zero-dependency **animated ASCII Christmas tree and winter landsc
 Paste this one-liner into any terminal to stream and launch the animation immediately:
 
 ```bash
-curl -sL https://[raw.githubusercontent.com/gezwegen/winter-christmas/main/winter_christmas.sh](https://raw.githubusercontent.com/gezwegen/winter-christmas/main/winter_christmas.sh) | bash
+curl -sL https://raw.githubusercontent.com/gezwegen/winter-christmas/main/winter_christmas.sh | bash
 ```
 
 Customize the bottom marquee message and snowflake density when streaming:
 
 ```bash
-curl -sL https://[raw.githubusercontent.com/gezwegen/winter-christmas/main/winter_christmas.sh](https://raw.githubusercontent.com/gezwegen/winter-christmas/main/winter_christmas.sh) | bash -s -- -m "HAPPY HOLIDAYS FROM LINUX!" -s 120
+curl -sL https://raw.githubusercontent.com/gezwegen/winter-christmas/main/winter_christmas.sh | bash -s -- -m "HAPPY HOLIDAYS FROM LINUX!" -s 120
 ```
 
 ## 📦 Download & Run Locally
 
 ```bash
-git clone https://[github.com/gezwegen/winter-christmas.git](https://github.com/gezwegen/winter-christmas.git)
+git clone https://github.com/gezwegen/winter-christmas.git
 cd winter-christmas
 chmod +x winter_christmas.sh
 ./winter_christmas.sh
