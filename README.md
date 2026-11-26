@@ -7,7 +7,7 @@
 A full-screen, zero-dependency **animated ASCII Christmas tree and winter landscape** written in pure Bash. Turn any Linux, macOS, or Windows WSL terminal into an interactive holiday screensaver with falling snow, Santa's sleigh, Northern Lights, and fireworks—runnable in one command via `curl`.
 
 <p align="center>
-<img width="1280" height="720" alt="demo-small" src="https://github.com/user-attachments/assets/d9558c94-77b7-4bf0-a08f-afe4ba8b3cae" />
+  <img width="1280" height="720" alt="demo-small" src="https://github.com/user-attachments/assets/d9558c94-77b7-4bf0-a08f-afe4ba8b3cae" />
 </p>
 
 ## ✨ Features
