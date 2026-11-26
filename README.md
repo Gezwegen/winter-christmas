@@ -29,8 +29,11 @@ Customize the bottom marquee message and snowflake density when streaming:
 ```bash
 curl -sL https://raw.githubusercontent.com/gezwegen/winter-christmas/main/winter_christmas.sh | bash -s -- -m "HAPPY HOLIDAYS FROM LINUX!" -s 120
 ```
+
 ## 🍺 Install via Homebrew (macOS & Linux)
-bash brew install gezwegen/tap/winter-christmas winter-christmas 
+```bash
+brew install gezwegen/tap/winter-christmas
+```
 
 ## 📦 Download & Run Locally
 
