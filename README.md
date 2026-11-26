@@ -31,8 +31,16 @@ curl -sL https://raw.githubusercontent.com/gezwegen/winter-christmas/main/winter
 ```
 
 ## 🍺 Install via Homebrew (macOS & Linux)
+
 ```bash
 brew install gezwegen/tap/winter-christmas
+winter-christmas
+```
+
+Or pass custom flags directly:
+
+```bash
+winter-christmas -m "MERRY CHRISTMAS!" -s 120
 ```
 
 ## 📦 Download & Run Locally
